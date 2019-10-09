@@ -63,15 +63,16 @@ module.exports = class extends Generator {
 
 		this.fs.copyTpl(
 			this.templatePath('component.scss'),
-			this.destinationPath(pascalToSnake(scss),
+			this.destinationPath(pascalToSnake(scss)),
 				{ name }
     );
+
 		this.fs.copyTpl(
 			this.templatePath('Component.js'),
 			this.destinationPath(name + '.js'),
-      { name,
-					scss
-	}
+			{ 
+				name,
+			}
     );
   }
 
