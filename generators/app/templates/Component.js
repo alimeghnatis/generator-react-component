@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 import('./<%= scss %>')
 
-const <%= name %> = (props) => {
-
-}
+const <%= name %> = (props) => 
+	<h2>Welcome to the <%= name %> component</h2>
 
 /*
 <%= name %>.propTypes = {
