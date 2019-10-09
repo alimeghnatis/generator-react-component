@@ -72,6 +72,7 @@ module.exports = class extends Generator {
 			this.destinationPath(name + '.js'),
 			{ 
 				name,
+				scss
 			}
     );
   }
