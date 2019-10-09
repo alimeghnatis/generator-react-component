@@ -1,12 +1,26 @@
 import React, { memo } from 'react'
+import PropTypes from 'prop-types';
 
 import('./<%= scss %>')
 
-export default memo((
-	props
-) => 
-	<h2>Welcome to your <%= name %> component</h2>
-)
+const <%= name %> = (props) => {
+
+}
+
+/*
+<%= name %>.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired,
+  }),
+  onArchiveTask: PropTypes.func,
+  onPinTask: PropTypes.func,
+};
+*/
+
+
+export default memo(<%= name %>)
 
 //const comparisonFunction = ((p,n) => true)
 
