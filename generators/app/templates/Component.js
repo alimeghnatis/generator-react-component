@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types';
 
-if(!process.env.BACKEND) import(/* webpackChunkName: "<%= scss %>" */ './<%= scss %>')
+if(!process.env.BACKEND) import(/* webpackChunkName: "css.<%= scss %>" */ './<%= scss %>')
 
 
 const <%= name %> = (props) => 
