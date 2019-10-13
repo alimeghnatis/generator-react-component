@@ -1,7 +1,8 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types';
 
-import('./<%= scss %>')
+if(!process.env.BACKEND) import('./<%= scss %>')
+
 
 const <%= name %> = (props) => 
 	<h2>Welcome to the <%= name %> component</h2>
