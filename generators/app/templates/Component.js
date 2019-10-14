@@ -26,6 +26,10 @@ const <%= name %> = ({
   }),
   onArchiveTask: PropTypes.func,
   onPinTask: PropTypes.func,
+	children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ]).isRequired
 };
 */
 
