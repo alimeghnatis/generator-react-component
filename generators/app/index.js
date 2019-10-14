@@ -19,10 +19,14 @@ module.exports = class extends Generator {
     // This makes `appname` a required argument.
     this.argument("name", { type: String, required: true });
 		this.option("common", {type:String, alias:'c'})
+		this.option("withcommon", {type:Boolean, alias:'w'})
 
     // And you can then access it later; e.g.
-    this.log(this.options.name);
-    this.log(this.options.common);
+    this.log('Name', this.options.name);
+    this.log('Is a common component ?', this.options.common ? true:false)
+		this.options.common ?
+			this.log('Common for', this.options.common) :
+			this.log('Create common dir ?', this.options.withcommon ? true:false)
   }
 
 	/*prompting() {
@@ -48,14 +52,23 @@ module.exports = class extends Generator {
 
 	writing() {
 		/* Setting up variables */
-		const { name, common } = this.options
+		const { 
+			name, 
+			withcommon, 
+			common 
+		} = this.options
 		const folder = common ? './' : './' + name  +'/'
 		const lower = pascalToSnake(name)
 		const scss = lower + '.scss'
 		const chunk_name = common || lower
 
 		/* Making the new folder */
-		if (!common) mkdirp.sync(name)
+		if (!common) {
+			mkdirp.sync(name)
+			if(withcommon) {
+				mkdirp.sync(name + '/common')
+			}
+		}
 		this.destinationRoot(folder);
 		
 		/* Copying */
