@@ -6,10 +6,13 @@ if(!process.env.BACKEND) import(/* webpackChunkName: "css.<%= chunk_name %>" */ 
 
 const main_class = '<%= lower %>'
 
-const <%= name %> = (props) => 
+const <%= name %> = ({
+	className
+}) => 
 	<div className={
 		main_class
-		+ ' '
+		//+ (? '':'')
+		+ (className ? ' ' + className : '')
 	}>
 		<h2>Welcome to the <%= name %> component</h2>
 	</div>
