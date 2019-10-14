@@ -48,7 +48,8 @@ module.exports = class extends Generator {
 		/* Setting up variables */
 		const { name } = this.options
 		const folder = './' + name  +'/'
-		const scss = pascalToSnake(name + '.scss')
+		const lower = pascalToSnake(name)
+		const scss = lower + '.scss'
 
 		/* Making the new folder */
 		mkdirp.sync(name)
@@ -72,7 +73,8 @@ module.exports = class extends Generator {
 			this.destinationPath(name + '.js'),
 			{ 
 				name,
-				scss
+				scss,
+				lower,
 			}
     );
   }
