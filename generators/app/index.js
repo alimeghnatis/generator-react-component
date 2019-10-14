@@ -18,7 +18,7 @@ module.exports = class extends Generator {
 
     // This makes `appname` a required argument.
     this.argument("name", { type: String, required: true });
-		this.option("common")
+		this.option("common", {type:String, alias:'c'})
 
     // And you can then access it later; e.g.
     this.log(this.options.name);
@@ -52,6 +52,7 @@ module.exports = class extends Generator {
 		const folder = common ? './' : './' + name  +'/'
 		const lower = pascalToSnake(name)
 		const scss = lower + '.scss'
+		const chunk_name = common || lower
 
 		/* Making the new folder */
 		if (!common) mkdirp.sync(name)
@@ -76,6 +77,7 @@ module.exports = class extends Generator {
 			{ 
 				name,
 				scss,
+				chunk_name,
 				lower,
 			}
     );

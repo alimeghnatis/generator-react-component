@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import getClassName from 'utils'
 
-if(!process.env.BACKEND) import(/* webpackChunkName: "css.<%= scss %>" */ './<%= scss %>')
+if(!process.env.BACKEND) import(/* webpackChunkName: "css.<%= chunk_name %>" */ './<%= scss %>')
 
 const main_class = '<%= lower %>'
 
