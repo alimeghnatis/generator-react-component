@@ -12,7 +12,7 @@ const <%= name %> = (props) =>
 		+ ' '
 	}>
 		<h2>Welcome to the <%= name %> component</h2>
-		</div>
+	</div>
 
 /*
 <%= name %>.propTypes = {
