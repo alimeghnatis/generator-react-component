@@ -1,8 +1,10 @@
 import React, { memo } from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import getClassName from 'utils'
 
 if(!process.env.BACKEND) import(/* webpackChunkName: "css.<%= scss %>" */ './<%= scss %>')
 
+const main_class = <%= scss %>
 
 const <%= name %> = (props) => 
 	<h2>Welcome to the <%= name %> component</h2>
