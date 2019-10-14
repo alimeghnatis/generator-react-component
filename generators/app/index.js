@@ -18,9 +18,11 @@ module.exports = class extends Generator {
 
     // This makes `appname` a required argument.
     this.argument("name", { type: String, required: true });
+		this.option("common")
 
     // And you can then access it later; e.g.
     this.log(this.options.name);
+    this.log(this.options.common);
   }
 
 	/*prompting() {
@@ -46,17 +48,17 @@ module.exports = class extends Generator {
 
 	writing() {
 		/* Setting up variables */
-		const { name } = this.options
-		const folder = './' + name  +'/'
+		const { name, common } = this.options
+		const folder = common ? './' : './' + name  +'/'
 		const lower = pascalToSnake(name)
 		const scss = lower + '.scss'
 
 		/* Making the new folder */
-		mkdirp.sync(name)
+		if (!common) mkdirp.sync(name)
 		this.destinationRoot(folder);
 		
 		/* Copying */
-		this.fs.copyTpl(
+		if(!common) this.fs.copyTpl(
 			this.templatePath('index.js'),
 			this.destinationPath('index.js'),
       { name  }
@@ -77,6 +79,7 @@ module.exports = class extends Generator {
 				lower,
 			}
     );
+
   }
 
   install() {
