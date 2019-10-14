@@ -1,6 +1,6 @@
 {
   "name": "generator-react-scss-component",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Creates a component for react 16.8 with a custom name and a scss file",
   "homepage": "https://github.com/779g/generator-react-scss-component",
   "author": {
