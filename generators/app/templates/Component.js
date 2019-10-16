@@ -6,7 +6,7 @@ if(!process.env.BACKEND) import(/* webpackChunkName: "css.<%= chunk_name %>" */ 
 
 const main_class = '<%= lower %>'
 
-const <%= name %> = ({
+const <%= name %> = memo(({
 	id,
 	className
 }) => 
@@ -17,7 +17,7 @@ const <%= name %> = ({
 	}>
 		<h2>Welcome to the <%= name %> component</h2>
 	</div>
-
+)
 /*
 <%= name %>.propTypes = {
 	id: PropTypes.string,
@@ -37,7 +37,7 @@ const <%= name %> = ({
 */
 
 
-export default memo(<%= name %>)
+export default <%= name %>
 
 //const comparisonFunction = ((p,n) => true)
 
