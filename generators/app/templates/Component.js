@@ -7,6 +7,7 @@ if(!process.env.BACKEND) import(/* webpackChunkName: "css.<%= chunk_name %>" */ 
 const main_class = '<%= lower %>'
 
 const <%= name %> = ({
+	id,
 	className
 }) => 
 	<div className={
@@ -19,6 +20,8 @@ const <%= name %> = ({
 
 /*
 <%= name %>.propTypes = {
+	id: PropTypes.string,
+  className: PropTypes.string,
   task: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
