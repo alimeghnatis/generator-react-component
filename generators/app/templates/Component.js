@@ -15,6 +15,7 @@ const <%= name %> = memo(({
 		main_class
 		//+ (? '':'')
 		+ (className ? ' ' + className : '')
+	}
 		id={ id }
 		style={ style }
 	}>
