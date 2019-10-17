@@ -18,7 +18,7 @@ const <%= name %> = memo(({
 	}
 		id={ id }
 		style={ style }
-	}>
+	>
 		<h2>Welcome to the <%= name %> component</h2>
 	</div>
 )
