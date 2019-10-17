@@ -14,6 +14,7 @@ const <%= name %> = memo(({
 		main_class
 		//+ (? '':'')
 		+ (className ? ' ' + className : '')
+		id={id}
 	}>
 		<h2>Welcome to the <%= name %> component</h2>
 	</div>
