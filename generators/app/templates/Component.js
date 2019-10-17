@@ -8,13 +8,15 @@ const main_class = '<%= lower %>'
 
 const <%= name %> = memo(({
 	id,
-	className
+	className,
+	style
 }) => 
 	<div className={
 		main_class
 		//+ (? '':'')
 		+ (className ? ' ' + className : '')
-		id={id}
+		id={ id }
+		style={ style }
 	}>
 		<h2>Welcome to the <%= name %> component</h2>
 	</div>
@@ -23,6 +25,7 @@ const <%= name %> = memo(({
 <%= name %>.propTypes = {
 	id: PropTypes.string,
   className: PropTypes.string,
+  style:PropTypes.object,
   task: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
