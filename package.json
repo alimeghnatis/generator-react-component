@@ -1,12 +1,12 @@
 {
-  "name": "generator-react-scss-component",
-  "version": "1.2.5",
-  "description": "Creates a component for react 16.8 with a custom name and a scss file",
+  "name": "generator-component",
+  "version": "0.1.0",
+  "description": "Creates a component for react 16.8 with a custom name and a scss file. To be used with @fwrlines/scss",
   "homepage": "https://github.com/779g/generator-react-scss-component",
   "author": {
-    "name": "779g",
+    "name": "fwrlines",
     "email": "800@779.mx",
-    "url": "https://github.com/779g"
+    "url": "https://github.com/fwrlines"
   },
   "files": [
     "generators"
