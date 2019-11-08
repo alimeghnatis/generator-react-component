@@ -1,5 +1,6 @@
 # generator-react-scss-component [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Creates a component for react 16.8 with a custom name and a scss file
+> Creates a component for react 16.8 with a custom name and a scss file. 
+
 
 ## Installation
 
@@ -7,14 +8,19 @@ First, install [Yeoman](http://yeoman.io) and generator-react-scss-component usi
 
 ```bash
 npm install -g yo
-npm install -g generator-react-scss-component
+npm install -g @fwrlines/generator-component
 ```
 
 Then generate your new project:
 
 ```bash
-yo react-scss-component
+yo component
 ```
+
+## Aliasing
+
+
+
 
 ## Getting To Know Yeoman
 
@@ -27,6 +33,12 @@ yo react-scss-component
 
 MIT © [779g](https://github.com/779g)
 
+## TODO
+
+* Document the code
+* Features list
+* Alias
+* Example usage
 
 [npm-image]: https://badge.fury.io/js/generator-react-scss-component.svg
 [npm-url]: https://npmjs.org/package/generator-react-scss-component
@@ -36,3 +48,5 @@ MIT © [779g](https://github.com/779g)
 [daviddm-url]: https://david-dm.org/779g/generator-react-scss-component
 [coveralls-image]: https://coveralls.io/repos/779g/generator-react-scss-component/badge.svg
 [coveralls-url]: https://coveralls.io/r/779g/generator-react-scss-component
+
+
