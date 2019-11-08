@@ -1,8 +1,8 @@
 {
-  "name": "generator-component",
+  "name": "generator-react-component",
   "version": "0.1.0",
   "description": "Creates a component for react 16.8 with a custom name and a scss file. To be used with @fwrlines/scss",
-  "homepage": "https://github.com/779g/generator-react-scss-component",
+  "homepage": "https://github.com/fwrlines/generator-react-component",
   "author": {
     "name": "fwrlines",
     "email": "800@779.mx",
@@ -70,6 +70,6 @@
     "pretest": "eslint .",
     "test": "jest"
   },
-  "repository": "779g/generator-react-scss-component",
+  "repository": "fwrlines/generator-react-component",
   "license": "MIT"
 }

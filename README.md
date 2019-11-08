@@ -1,14 +1,14 @@
-# generator-component [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-react-component [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > Creates a component for react 16.8 with a custom name and a scss file. 
 
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-component using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-react-component using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g @fwrlines/generator-component
+npm install -g @fwrlines/generator-react-component
 ```
 
 Then generate your new project:
@@ -40,13 +40,13 @@ MIT © [fwrlines](https://github.com/fwrlines)
 * Alias
 * Example usage
 
-[npm-image]: https://badge.fury.io/js/generator-component.svg
-[npm-url]: https://npmjs.org/package/generator-component
-[travis-image]: https://travis-ci.com/fwrlines/generator-component.svg?branch=master
-[travis-url]: https://travis-ci.com/fwrlines/generator-component
-[daviddm-image]: https://david-dm.org/fwrlines/generator-component.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/fwrlines/generator-component
-[coveralls-image]: https://coveralls.io/repos/fwrlines/generator-component/badge.svg
-[coveralls-url]: https://coveralls.io/r/fwrlines/generator-component
+[npm-image]: https://badge.fury.io/js/generator-react-component.svg
+[npm-url]: https://npmjs.org/package/generator-react-component
+[travis-image]: https://travis-ci.com/fwrlines/generator-react-component.svg?branch=master
+[travis-url]: https://travis-ci.com/fwrlines/generator-react-component
+[daviddm-image]: https://david-dm.org/fwrlines/generator-react-component.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/fwrlines/generator-react-component
+[coveralls-image]: https://coveralls.io/repos/fwrlines/generator-react-component/badge.svg
+[coveralls-url]: https://coveralls.io/r/fwrlines/generator-react-component
 
 
