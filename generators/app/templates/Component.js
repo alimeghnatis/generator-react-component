@@ -13,9 +13,10 @@ const <%= name %> = memo(({
 }) => 
 	<div 
 		className={
-		main_class
-		//+ (? '':'')
-		+ className
+			[
+				main_class,
+				className
+			].join(' ')
 	}
 		id={ id }
 		style={ style }
