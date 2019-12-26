@@ -1,12 +1,17 @@
-import React, { memo } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import C from 'ui/cssClasses'
 
-if(!process.env.BACKEND) import(/* webpackChunkName: "css.<%= chunk_name %>" */ './<%= scss %>')
+if(!process.env.BACKEND) {
+	import(
+		/* webpackChunkName: "css.<%= chunk_name %>" */ 
+		'./<%= scss %>'
+	)
+}
 
 const main_class = '<%= lower %>'
 
-const <%= name %> = memo(({
+const <%= name %> = ({
 	id,
 	className='',
 	style
@@ -16,34 +21,59 @@ const <%= name %> = memo(({
 			[
 				main_class,
 				className
-			].join(' ')
+			].filter(e => e).join(' ')
 	}
 		id={ id }
 		style={ style }
 	>
 		<h2>Welcome to the <%= name %> component</h2>
 	</div>
-)
 
-/*
 <%= name %>.propTypes = {
+	/**
+   * Provide an HTML id to this element
+   */
 	id: PropTypes.string,
+
+	/**
+   * The html class names to be provided to this element
+   */
   className: PropTypes.string,
+
+	/**
+   * The JSX-Written, css styles to apply to the element. 
+   */
   style:PropTypes.object,
-  task: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    state: PropTypes.string.isRequired,
-  }),
-  onArchiveTask: PropTypes.func,
-  onPinTask: PropTypes.func,
+
+	/**
+   *  The children JSX
+   */
 	children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
     ]).isRequired
+
+	/**
+   * 
+   */
+
+	/*
+  : PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired,
+  }),
+  : PropTypes.func,
+  : PropTypes.func,
+	: PropTypes.oneOf(['primary', 'stroke', 'flat'])
+	*/
+};
+
+/*
+<%= name %>.defaultProps = {
+  status: 'neutral',
 };
 */
-
 
 export default <%= name %>
 

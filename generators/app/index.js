@@ -60,7 +60,7 @@ module.exports = class extends Generator {
 		const folder = common ? './' : './' + name  +'/'
 		const lower = pascalToSnake(name)
 		const scss = lower + '.scss'
-		const chunk_name = (common && pascalToSnake(common)) || lower
+		const chunk_name = common ? pascalToSnake(common) : lower
 
 		/* Making the new folder */
 		if (!common) {
