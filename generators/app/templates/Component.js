@@ -13,7 +13,7 @@ const main_class = '<%= lower %>'
 
 const <%= name %> = ({
   id,
-  className='',
+  className,
   style
 }) => 
   <div 
