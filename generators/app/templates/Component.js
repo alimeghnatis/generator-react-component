@@ -1,6 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+//Config
 import C from 'ui/cssClasses'
+
+//Relative imports
 
 if(!process.env.BACKEND) {
   import(
