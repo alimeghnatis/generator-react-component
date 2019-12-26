@@ -3,61 +3,54 @@ import PropTypes from 'prop-types'
 import C from 'ui/cssClasses'
 
 if(!process.env.BACKEND) {
-	import(
-		/* webpackChunkName: "css.<%= chunk_name %>" */ 
-		'./<%= scss %>'
-	)
+  import(
+    /* webpackChunkName: "css.<%= chunk_name %>" */ 
+    './<%= scss %>'
+  )
 }
 
 const main_class = '<%= lower %>'
 
 const <%= name %> = ({
-	id,
-	className='',
-	style
+  id,
+  className='',
+  style
 }) => 
-	<div 
-		className={
-			[
-				main_class,
-				className
-			].filter(e => e).join(' ')
-	}
-		id={ id }
-		style={ style }
-	>
-		<h2>Welcome to the <%= name %> component</h2>
-	</div>
+  <div 
+    className={
+      [
+        main_class,
+        className
+      ].filter(e => e).join(' ')
+  }
+    id={ id }
+    style={ style }
+  >
+    <h2>Welcome to the <%= name %> component</h2>
+  </div>
 
 <%= name %>.propTypes = {
-	/**
+  /**
    * Provide an HTML id to this element
    */
-	id: PropTypes.string,
+  id: PropTypes.string,
 
-	/**
+  /**
    * The html class names to be provided to this element
    */
   className: PropTypes.string,
 
-	/**
+  /**
    * The JSX-Written, css styles to apply to the element. 
    */
-  style:PropTypes.object,
+  style: PropTypes.object,
 
-	/**
+  /**
    *  The children JSX
    */
-	children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ]).isRequired
+  children: PropTypes.node, 
 
-	/**
-   * 
-   */
-
-	/*
+  /*
   : PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -65,8 +58,8 @@ const <%= name %> = ({
   }),
   : PropTypes.func,
   : PropTypes.func,
-	: PropTypes.oneOf(['primary', 'stroke', 'flat'])
-	*/
+  : PropTypes.oneOf(['primary', 'stroke', 'flat'])
+  */
 };
 
 /*
@@ -76,8 +69,3 @@ const <%= name %> = ({
 */
 
 export default <%= name %>
-
-//const comparisonFunction = ((p,n) => true)
-
-//export default memo(() => , comparisonFunction)
-

@@ -25,8 +25,6 @@ module.exports = {
   },
   'parser': 'babel-eslint',
   'plugins': [
-		'react',
-		'react-hooks',
     'babel'
   ],
   'rules': {
@@ -70,30 +68,6 @@ module.exports = {
 		'no-unused-vars' :[
 			"warn"
 		],
-		'react/jsx-closing-tag-location': ['error'],
-		'react/jsx-indent': ['error', 2],
-    'react/jsx-indent-props':[
-      'error',2
-    ],
-		'react/jsx-closing-bracket-location': ['error', 'tag-aligned'],
-		'react/jsx-first-prop-new-line': [
-			'error', 'multiline-multiprop'
-		],
-		'react/jsx-max-props-per-line': ['error', { 'maximum':1}],
-    'react/jsx-one-expression-per-line': [
-      'error', {
-        'allow': 'single-child'
-      }
-    ],
-    'react/jsx-equals-spacing': [
-      1,
-      'never'
-    ],
-    'react/display-name': 0,
-    'react/prop-types': 0,
-		'react/forbid-prop-types': 0,
-		'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
   }
 }
 
