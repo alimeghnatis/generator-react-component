@@ -9,17 +9,17 @@ if(!process.env.BACKEND) {
   )
 }
 
-const main_class = '<%= lower %>'
+const baseClassName = '<%= lower %>'
 
 const <%= name %> = ({
   id,
   className,
   style
-}) => 
+}) => (
   <div 
     className={
       [
-        main_class,
+        baseClassName,
         className
       ].filter(e => e).join(' ')
   }
@@ -28,6 +28,7 @@ const <%= name %> = ({
   >
     <h2>Welcome to the <%= name %> component</h2>
   </div>
+)
 
 <%= name %>.propTypes = {
   /**
@@ -41,14 +42,14 @@ const <%= name %> = ({
   className: PropTypes.string,
 
   /**
-   * The JSX-Written, css styles to apply to the element. 
+   * The JSX-Written, css styles to apply to the element.
    */
   style: PropTypes.object,
 
   /**
    *  The children JSX
    */
-  children: PropTypes.node, 
+  children: PropTypes.node,
 
   /*
   : PropTypes.shape({
@@ -60,12 +61,12 @@ const <%= name %> = ({
   : PropTypes.func,
   : PropTypes.oneOf(['primary', 'stroke', 'flat'])
   */
-};
+}
 
 /*
 <%= name %>.defaultProps = {
   status: 'neutral',
-};
+}
 */
 
 export default <%= name %>
