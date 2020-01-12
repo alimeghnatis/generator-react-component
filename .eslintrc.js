@@ -25,7 +25,8 @@ module.exports = {
   },
   'parser': 'babel-eslint',
   'plugins': [
-    'babel'
+    'babel',
+    'ejs'
   ],
   'rules': {
     'indent': [
