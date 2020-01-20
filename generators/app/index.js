@@ -3,6 +3,9 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const mkdirp = require('mkdirp');
+let pjson = require('../../package.json')
+const version = pjson.version
+const pkg = pjson.name
 
 function pascalToSnake(s){
 	return s
@@ -75,13 +78,13 @@ module.exports = class extends Generator {
 		if(!common) this.fs.copyTpl(
 			this.templatePath('index.js'),
 			this.destinationPath('index.js'),
-      { name  }
+      { name, pkg, version  }
     );
 
 		this.fs.copyTpl(
 			this.templatePath('component.scss'),
 			this.destinationPath(pascalToSnake(scss)),
-				{ name, lower }
+				{ name, lower, pkg, version }
     );
 
 		this.fs.copyTpl(
@@ -92,6 +95,8 @@ module.exports = class extends Generator {
 				scss,
 				chunk_name,
 				lower,
+        pkg,
+        version
 			}
     );
 
