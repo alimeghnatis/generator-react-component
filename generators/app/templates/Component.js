@@ -3,16 +3,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 //Config
-import C from 'ui/cssClasses'
+//import C from 'ui/cssClasses'
 
 //Relative imports
-
-if(!process.env.BACKEND) {
-  import(
-    /* webpackChunkName: "css.<%= chunk_name %>" */ 
-    './<%= scss %>'
-  )
-}
+import styles from './<%= scss %>'
 
 const baseClassName = '<%= lower %>'
 
@@ -24,7 +18,7 @@ const <%= name %> = ({
   <div 
     className={
       [
-        baseClassName,
+        styles[baseClassName],
         className
       ].filter(e => e).join(' ')
   }
