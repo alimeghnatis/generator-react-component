@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 
 <% if (withquery) { %>
 import { useQuery } from '@apollo/react-hooks'
+import { gql } from 'graphql-tag'
 import QUERY from './graphql/query.gql'
 <% } %>
 
-import { gql } from 'graphql-tag'
 //Config
 //import C from 'ui/cssClasses'
 
