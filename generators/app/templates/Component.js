@@ -2,6 +2,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+<% if (withquery) { %>
+import { useQuery } from '@apollo/react-hooks'
+import QUERY from './graphql/query.gql'
+<% } %>
+
+import { gql } from 'graphql-tag'
 //Config
 //import C from 'ui/cssClasses'
 
@@ -14,7 +20,16 @@ const <%= name %> = ({
   id,
   className,
   style
-}) => (
+}) => {
+  <% if (withquery) { %>
+  const {
+    loading,
+    error,
+    data=
+  } = useQuery(gql(QUERY))
+  <% } %>
+  
+  return (
   <div 
     className={
       [
@@ -27,7 +42,7 @@ const <%= name %> = ({
   >
     <h2>Welcome to the <%= name %> component</h2>
   </div>
-)
+)}
 
 <%= name %>.propTypes = {
   /**

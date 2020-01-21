@@ -1,38 +1,38 @@
-'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
-const mkdirp = require('mkdirp');
+const Generator = require('yeoman-generator')
+const chalk = require('chalk')
+const yosay = require('yosay')
+const path = require('path')
+const fs = require('fs')
+const mkdirp = require('mkdirp')
 let pjson = require('../../package.json')
 const version = pjson.version
 const pkg = pjson.name
 
 function pascalToSnake(s){
-	return s
-		.replace(/(?:^|\.?)([A-Z])/g, function (x,y){
-			return "_" + y.toLowerCase()
-		})
-		.replace(/^_/, "")
+  return s
+    .replace(/(?:^|\.?)([A-Z])/g, (x,y) => '_' + y.toLowerCase())
+    .replace(/^_/, '')
 }
 
 module.exports = class extends Generator {
   constructor(args, opts) {
-    super(args, opts);
+    super(args, opts)
 
     // This makes `appname` a required argument.
-    this.argument("name", { type: String, required: true });
-		this.option("common", {type:String, alias:'c'})
-		this.option("withcommon", {type:Boolean, alias:'w'})
+    this.argument('name', { type: String, required: true })
+    this.option('common', { type: String, alias: 'c' })
+    this.option('withcommon', { type: Boolean, alias: 'w' })
+    this.option('withquery', { type: Boolean, alias: 'q' })
 
     // And you can then access it later; e.g.
-    this.log('Name', this.options.name);
-    this.log('Is a common component ?', this.options.common ? true:false)
-		this.options.common ?
-			this.log('Common for', this.options.common) :
-			this.log('Create common dir ?', this.options.withcommon ? true:false)
+    this.log('Name', this.options.name)
+    this.log('Is a common component ?', !!this.options.common)
+    this.options.common ?
+      this.log('Common for', this.options.common) :
+      this.log('Create common dir ?', !!this.options.withcommon)
   }
 
-	/*prompting() {
+  /*prompting() {
     // Have Yeoman greet the user.
     this.log(
       yosay(`Welcome to the legendary ${chalk.red('generator-react-scss-component')} generator!`)
@@ -53,56 +53,67 @@ module.exports = class extends Generator {
     });
 	}*/
 
-	writing() {
-		/* Setting up variables */
-		const { 
-			name, 
-			withcommon, 
-			common 
-		} = this.options
-		const folder = common ? './' : './' + name  +'/'
-		const lower = pascalToSnake(name)
-		const scss = lower + '.scss'
-		const chunk_name = common ? pascalToSnake(common) : lower
+  writing() {
 
-		/* Making the new folder */
-		if (!common) {
-			mkdirp.sync(name)
-			if(withcommon) {
-				mkdirp.sync(name + '/common')
-			}
-		}
-		this.destinationRoot(folder);
+    /* Setting up variables */
+    const {
+      name,
+      withcommon,
+      common,
+      withquery
+    } = this.options
+    const folder = common ? './' : './' + name  +'/'
+    const lower = pascalToSnake(name)
+    const scss = lower + '.scss'
+    const chunk_name = common ? pascalToSnake(common) : lower
+    const touchFile = (relativeFilePath) => {
+      const fullPath = path.resolve(path.join(process.cwd(), relativeFilePath))
+      fs.closeSync(fs.openSync(fullPath, 'w'))
+    }
+
+    /* Making the new folder */
+    if (!common) {
+      mkdirp.sync(name)
+      if (withcommon) {
+        mkdirp.sync(name + '/common')
+      }
+    }
+    this.destinationRoot(folder)
 		
-		/* Copying */
-		if(!common) this.fs.copyTpl(
-			this.templatePath('index.js'),
-			this.destinationPath('index.js'),
-      { name, pkg, version  }
-    );
+    /* Copying */
+    if (!common) this.fs.copyTpl(
+      this.templatePath('index.js'),
+      this.destinationPath('index.js'),
+      { name, pkg, version, withquery }
+    )
 
-		this.fs.copyTpl(
-			this.templatePath('component.scss'),
-			this.destinationPath(pascalToSnake(scss)),
-				{ name, lower, pkg, version }
-    );
+    this.fs.copyTpl(
+      this.templatePath('component.scss'),
+      this.destinationPath(pascalToSnake(scss)),
+      { name, lower, pkg, version, withquery }
+    )
+    if (withquery){
+      mkdirp.sync('graphql')
+      touchFile('graphql/q.gql')
+    }
 
-		this.fs.copyTpl(
-			this.templatePath('Component.js'),
-			this.destinationPath(name + '.js'),
-			{ 
-				name,
-				scss,
-				chunk_name,
-				lower,
+    this.fs.copyTpl(
+      this.templatePath('Component.js'),
+      this.destinationPath(name + '.js'),
+      {
+        name,
+        scss,
+        chunk_name,
+        lower,
         pkg,
-        version
-			}
-    );
+        version,
+        withquery
+      }
+    )
 
   }
 
   install() {
-		//this.installDependencies();
+    //this.installDependencies();
   }
-};
+}

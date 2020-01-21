@@ -17,12 +17,15 @@
     "yeoman-generator"
   ],
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "coveralls": "^3.0.5",
     "eslint": "^6.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-xo": "^0.26.0",
+    "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-ejs": "0.0.2",
     "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.18.0",
     "husky": "^3.0.1",
     "jest": "^24.8.0",
     "lint-staged": "^9.2.0",

@@ -1,16 +1,6 @@
 module.exports = {
-  'settings': {
-    'import/resolver': {
-      'webpack': {
-        'config': 'webpack.config.js'
-      }
-    }
-  },
   'env': {
-    'browser': true,
     'node': true,
-    'commonjs': true,
-    'es6': true
   },
   'extends': [
     'eslint:recommended',
