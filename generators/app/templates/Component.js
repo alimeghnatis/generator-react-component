@@ -65,6 +65,20 @@ const <%= name %> = ({
    */
   children: PropTypes.node,
 
+  /**
+   * With html tag to use
+   */
+  as: PropTypes.string,
+
+  /**
+   * The height of the element
+   */
+  height: PropTypes.string,
+
+  /**
+   * The width of the element
+   */
+  width: PropTypes.string,
   /*
   : PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -73,13 +87,15 @@ const <%= name %> = ({
   }),
   : PropTypes.func,
   : PropTypes.func,
-  : PropTypes.oneOf(['primary', 'stroke', 'flat'])
+  : PropTypes.oneOf(['', ''])
   */
 }
 
 /*
 <%= name %>.defaultProps = {
   status: 'neutral',
+  //height:'2.2em',
+  //as:'p',
 }
 */
 
