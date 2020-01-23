@@ -66,9 +66,13 @@ const <%= name %> = ({
   children: PropTypes.node,
 
   /**
-   * With html tag to use
+   * Which html tag to use
    */
-  as: PropTypes.string,
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node
+  ]), 
+  //as: PropTypes.string,
 
   /**
    * The height of the element
@@ -99,4 +103,7 @@ const <%= name %> = ({
 }
 */
 
+/**
+ * Use this component for your needs.
+ */
 export default <%= name %>
