@@ -16,6 +16,11 @@ import styles from './<%= scss %>'
 
 const baseClassName = '<%= lower %>'
 
+
+/**
+ * Use `<%= name %>` to
+ * Has color `x` 
+ */
 const <%= name %> = ({
   id,
   className,
@@ -102,8 +107,4 @@ const <%= name %> = ({
   //as:'p',
 }
 */
-
-/**
- * Use `<%= name %>` for your needs.
- */
 export default <%= name %>
