@@ -104,6 +104,6 @@ const <%= name %> = ({
 */
 
 /**
- * Use this component for your needs.
+ * Use `<%= name %>` for your needs.
  */
 export default <%= name %>
