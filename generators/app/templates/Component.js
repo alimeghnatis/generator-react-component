@@ -75,7 +75,7 @@ const <%= name %> = ({
    */
   as: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.node
+    PropTypes.object
   ]), 
   //as: PropTypes.string,
 
