@@ -12,7 +12,8 @@ import QUERY from './graphql/query.gql'
 //import C from 'ui/cssClasses'
 
 //Relative imports
-import styles from './<%= scss %>'
+//import styles from './<%= scss %>'
+import './<%= scss %>'
 
 const baseClassName = '<%= lower %>'
 
@@ -38,7 +39,8 @@ const <%= name %> = ({
   <div 
     className={
       [
-        styles[baseClassName],
+        //styles[baseClassName],
+        baseClassName,
         className
       ].filter(e => e).join(' ')
   }
