@@ -1,6 +1,6 @@
 {
   "name": "@fwrlines/generator-react-component",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Creates a component for react 16.8 with a custom name and a scss file. To be used with @fwrlines/scss",
   "homepage": "https://github.com/fwrlines/generator-react-component",
   "author": {
