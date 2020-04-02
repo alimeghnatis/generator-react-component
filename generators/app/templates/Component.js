@@ -1,5 +1,6 @@
 /* <%= pkg %> <%= version %> */
-import React from 'react'
+import * as React from 'react'
+//import {} from 'react'
 import PropTypes from 'prop-types'
 
 <% if (withquery) { %>
