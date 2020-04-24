@@ -21,6 +21,7 @@ module.exports = class extends Generator {
     // This makes `appname` a required argument.
     this.argument('name', { type: String, required: true })
     this.option('common', { type: String, alias: 'c' })
+    this.option('simple', { type: Boolean, alias: 's' })
     this.option('withcommon', { type: Boolean, alias: 'w' })
     this.option('withquery', { type: String, alias: 'q' })
     this.option('module', { type: Boolean, alias: 'm' })
@@ -203,6 +204,38 @@ module.exports = class extends Generator {
     })
   }
 
+  _generateSimpleComponent() {
+
+    this.log('MODE : GENERATE SIMPLE COMPONENT')
+
+    const {
+      name,
+      withquery,
+    } = this.options
+    
+    const targetFolder = './' + name  +'/'
+    const lower = pascalToSnake(name)
+    const chunk_name = lower
+
+    const templateDict = {
+        name,
+        lower,
+        chunk_name,
+        withquery,
+    } //Options to pass to the templates. pkg and version will be added automatically
+
+
+    this._create({
+      componentName:name,
+      targetFolder,
+      createDir:true,
+      createIndex:true,
+      syncComponent:'Simple.js', //Default
+      withquery,
+      templateDict
+    })
+  }
+
   _generateCommonComponent() {
 
     this.log('MODE : GENERATE COMMON COMPONENT')
@@ -279,13 +312,17 @@ module.exports = class extends Generator {
     const {
       common,
       module,
+      simple,
       page
     } = this.options
 
 
     if(!module) {
       if (page) this._generatePage()
-      else if (!common) this._generateComponent()
+      else if (!common) {
+        if(simple) this._generateSimpleComponent()
+        else this._generateComponent()
+      }
       else this._generateCommonComponent()
     } else {
       this._generateModule()
