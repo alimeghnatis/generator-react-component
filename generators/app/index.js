@@ -22,14 +22,22 @@ module.exports = class extends Generator {
     this.argument('name', { type: String, required: true })
     this.option('common', { type: String, alias: 'c' })
     this.option('withcommon', { type: Boolean, alias: 'w' })
-    this.option('withquery', { type: Boolean, alias: 'q' })
+    this.option('withquery', { type: String, alias: 'q' })
+    this.option('module', { type: Boolean, alias: 'm' })
+    this.option('page', { type: Boolean, alias: 'p' })
+    
 
     // And you can then access it later; e.g.
-    this.log('Name', this.options.name)
-    this.log('Is a common component ?', !!this.options.common)
-    this.options.common ?
-      this.log('Common for', this.options.common) :
-      this.log('Create common dir ?', !!this.options.withcommon)
+    if (!this.options.module) {
+      this.log('Name', this.options.name)
+      this.log('Is a common component ?', !!this.options.common)
+      this.options.common ?
+        this.log('Common for', this.options.common) :
+        this.log('Create common dir ?', !!this.options.withcommon)
+    }
+    else {
+      this.log('We are creating module ', this.options.name)
+    }
   }
 
   /*prompting() {
@@ -53,63 +61,236 @@ module.exports = class extends Generator {
     });
 	}*/
 
-  writing() {
+  _touchFile(relativeFilePath) {
+    this.log('TOUCH : ', relativeFilePath)
 
-    /* Setting up variables */
+
+    const fullPath = path.resolve(path.join(process.cwd(), relativeFilePath))
+    fs.closeSync(fs.openSync(fullPath, 'w'))
+  }
+
+  _generateModule() {
+    this.log('MODE : GENERATE MODULE')
+
     const {
       name,
-      withcommon,
-      common,
-      withquery
+      withquery,
     } = this.options
-    const folder = common ? './' : './' + name  +'/'
+    
+    const targetFolder = './' + name  +'/'
     const lower = pascalToSnake(name)
-    const scss = lower + '.scss'
-    const chunk_name = common ? pascalToSnake(common) : lower
-    const touchFile = (relativeFilePath) => {
-      const fullPath = path.resolve(path.join(process.cwd(), relativeFilePath))
-      fs.closeSync(fs.openSync(fullPath, 'w'))
+    const chunk_name = lower
+
+    const fullTemplateDict = {
+      name,
+      lower,
+      chunk_name,//Used ?
+      version,
+      pkg
     }
 
-    /* Making the new folder */
-    if (!common) {
-      mkdirp.sync(name)
-      if (withcommon) {
-        mkdirp.sync(name + '/common')
-      }
-    }
-    this.destinationRoot(folder)
-		
-    /* Copying */
-    if (!common) this.fs.copyTpl(
-      this.templatePath('index.js'),
-      this.destinationPath('index.js'),
-      { name, pkg, version, withquery }
+    mkdirp.sync(name)
+    this.destinationRoot(targetFolder)
+
+    this.fs.copyTpl(
+      this.templatePath('module/urls.js'),
+      this.destinationPath('urls.js'),
+      fullTemplateDict
     )
 
     this.fs.copyTpl(
-      this.templatePath('component.scss'),
-      this.destinationPath(pascalToSnake(scss)),
-      { name, lower, pkg, version, withquery }
+      this.templatePath('module/routes.js'),
+      this.destinationPath('routes.js'),
+      fullTemplateDict
     )
+
+    this.fs.copyTpl(
+      this.templatePath('module/index.js'),
+      this.destinationPath('index.js'),
+      fullTemplateDict
+    )
+
+    mkdirp.sync('components')
+    this._touchFile(`components/index.js`)
+
+    mkdirp.sync('pages')
+    this._touchFile(`pages/index.js`)
+
+    this.log('!!! DO NOT FORGETY')
+    this.log('1) Add module routes to routes.js')
+    this.log('2) Add module url exports to urls.js')
+
+  }
+
+  _create({
+      componentName,
+      targetFolder='./',
+      createDir=false,
+      createIndex=false,
+      scssFilename,
+      syncComponent='Component.js',
+      withquery=false,
+      templateDict={}
+  } ) {
+
+    const fullTemplateDict = {
+      ...templateDict,
+      version,
+      pkg
+    }
+    
+    if(createDir) mkdirp.sync(componentName)
+
+    this.destinationRoot(targetFolder)
+
+    if (createIndex) this.fs.copyTpl(
+      this.templatePath('component/index.js'),
+      this.destinationPath('index.js'),
+      fullTemplateDict,
+    )
+
+    if(scssFilename) this.fs.copyTpl(
+      this.templatePath('component/component.scss'),
+      this.destinationPath(scssFilename),
+      fullTemplateDict,
+    )
+
     if (withquery){
       mkdirp.sync('graphql')
-      touchFile('graphql/q.gql')
+      this._touchFile(`graphql/${withhauery}.gql`)
     }
 
     this.fs.copyTpl(
-      this.templatePath('Component.js'),
-      this.destinationPath(name + '.js'),
-      {
-        name,
-        scss,
-        chunk_name,
-        lower,
-        pkg,
-        version,
-        withquery
-      }
+      this.templatePath(`component/${syncComponent}`),
+      this.destinationPath(componentName + '.js'),
+      fullTemplateDict
     )
+    
+  }
+
+  _generateComponent() {
+
+    this.log('MODE : GENERATE COMPONENT')
+
+    const {
+      name,
+      withquery,
+    } = this.options
+    
+    const targetFolder = './' + name  +'/'
+    const lower = pascalToSnake(name)
+    const scssFilename = lower + '.scss'
+    const chunk_name = lower
+
+    const templateDict = {
+        name,
+        scss:scssFilename,
+        lower,
+        chunk_name,
+        withquery
+    } //Options to pass to the templates. pkg and version will be added automatically
+
+
+    this._create({
+      componentName:name,
+      targetFolder,
+      createDir:true,
+      createIndex:true,
+      scssFilename,
+      //syncComponent:'Component.js' //Default
+      withquery,
+      templateDict
+    })
+  }
+
+  _generateCommonComponent() {
+
+    this.log('MODE : GENERATE COMMON COMPONENT')
+
+    const {
+      name,
+      common,
+      withquery,
+    } = this.options
+    
+    const targetFolder = './'
+    const lower = pascalToSnake(name)
+    const scssFilename = lower + '.scss'
+    const chunk_name = pascalToSnake(common)
+
+    const templateDict = {
+        name,
+        scss:scssFilename,
+        lower,
+        chunk_name,
+        withquery
+    } //Options to pass to the templates. pkg and version will be added automatically
+
+    this._create({
+      componentName:name,
+      targetFolder,
+      //createDir:false, //default
+      //createIndex:false, //default
+      scssFilename,
+      //syncComponent:'Component.js' //Default
+      withquery,
+      templateDict
+    })
+  }
+
+  _generatePage() {
+
+    this.log('MODE : GENERATE PAGE')
+
+    const {
+      name,
+      common,
+      withquery,
+    } = this.options
+    
+    const targetFolder = './'
+    const lower = pascalToSnake(name)
+    //const scssFilename = lower + '.scss' //No css here
+    const chunk_name = common ? pascalToSnake(common) : pascalToSnake(name)
+
+    const templateDict = {
+        name,
+        lower,
+        chunk_name,
+        withquery
+    } //Options to pass to the templates. pkg and version will be added automatically
+
+    this._create({
+      componentName:name,
+      targetFolder,
+      //createDir:false, //default
+      //createIndex:false, //default
+      //scssFilename, //No css here
+      syncComponent:'Page.js', //Default
+      withquery,
+      templateDict
+    })
+
+  }
+
+  writing() {
+    this.log('STARTING')
+
+    const {
+      common,
+      module,
+      page
+    } = this.options
+
+
+    if(!module) {
+      if (page) this._generatePage()
+      else if (!common) this._generateComponent()
+      else this._generateCommonComponent()
+    } else {
+      this._generateModule()
+    }
+
 
   }
 

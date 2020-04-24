@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 <% if (withquery) { %>
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'graphql-tag'
-import QUERY from './graphql/query.gql'
+import QUERY from './graphql/<%= withquery %>.gql'
 <% } %>
 
 //Config
