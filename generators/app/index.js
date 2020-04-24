@@ -65,9 +65,23 @@ module.exports = class extends Generator {
   _touchFile(relativeFilePath) {
     this.log('TOUCH : ', relativeFilePath)
 
-
     const fullPath = path.resolve(path.join(process.cwd(), relativeFilePath))
     fs.closeSync(fs.openSync(fullPath, 'w'))
+  }
+
+  _touchOrAppendToIndex(a) {
+    const localIndex = 'index.js'
+    const localIndexExists = () => this.fs.exists(localIndex)
+    const fullPathLocalIndex = path.resolve(path.join(process.cwd(), localIndex))
+  
+    if (!localIndexExists()){
+      //this.fs.write(localIndex, '')
+      this._touchFile(localIndex)
+    }
+  
+    fs.appendFileSync(fullPathLocalIndex, a)
+    this.log(`updated \x1b[36m\x1b[1m ${localIndex} \x1b[0m`)
+
   }
 
   _generateModule() {
@@ -91,6 +105,7 @@ module.exports = class extends Generator {
     }
 
     mkdirp.sync(name)
+    
     this.destinationRoot(targetFolder)
 
     this.fs.copyTpl(
@@ -141,6 +156,12 @@ module.exports = class extends Generator {
     }
     
     if(createDir) mkdirp.sync(componentName)
+
+    const stringToAppendToIndex = createDir ?
+      `export { ${componentName} } from './${componentName}'\n` :
+      `export { default as ${componentName} } from './${componentName}'\n`
+
+    this._touchOrAppendToIndex(stringToAppendToIndex)
 
     this.destinationRoot(targetFolder)
 
