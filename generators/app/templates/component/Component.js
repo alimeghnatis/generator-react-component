@@ -14,7 +14,7 @@ import QUERY from './graphql/<%= withquery %>.gql'
 
 //Relative imports
 //import styles from './<%= scss %>'
-import './<%= scss %>'
+import('./<%= scss %>')
 
 const baseClassName = '<%= lower %>'
 
