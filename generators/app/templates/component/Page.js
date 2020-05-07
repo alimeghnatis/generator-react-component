@@ -42,7 +42,7 @@ const main_heading = {
   //subtitleProps:{},
 
   heading         :'Spartacus',
-  headingClassName:'ts-green'
+  headingClassName:'ts-green',
   headingAs       :'h1',
   //headingProps :{}
 
