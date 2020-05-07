@@ -3,6 +3,8 @@ import * as React from 'react'
 //import {} from 'react'
 import PropTypes from 'prop-types'
 
+import { Page, Heading } from '@fwrlines/ds'
+
 <% if (withquery) { %>
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'graphql-tag'
@@ -31,7 +33,7 @@ const helmet = {
   og_url             :'',
 }
 
-const main_heading = {
+const mainHeadingProps = {
   //id,
   className:'uc',
   //style,
