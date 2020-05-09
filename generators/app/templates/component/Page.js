@@ -76,7 +76,7 @@ const <%= name %> = ({
     >
       <Page.Section
         head
-        className='pu u2'
+        className='p-u u2'
         id='head'
       >
     
@@ -84,7 +84,7 @@ const <%= name %> = ({
       </Page.Section>
       <Page.Section
         id='a1'
-        className='pu u2'
+        className='p-u u2'
       >
         <h2>Section A2</h2>
         <p>Some content here. Blah blah</p>
@@ -92,7 +92,7 @@ const <%= name %> = ({
       </Page.Section>
       <Page.Section
         id='a2'
-        className='pu u2'
+        className='p-u u2'
       >
         <h2>Section A2</h2>
         <p>Some content here. Blah blah</p>
