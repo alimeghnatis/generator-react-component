@@ -251,7 +251,7 @@ module.exports = class extends Generator {
       targetFolder,
       createDir:true,
       createIndex:true,
-      syncComponent:'Simple.js', //Default
+      syncComponent:'SimpleComponent.js', //Default
       withquery,
       templateDict
     })

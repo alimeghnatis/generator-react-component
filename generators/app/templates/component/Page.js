@@ -21,6 +21,7 @@ const helmet = {
   robots             :'noindex, nofollow',
   title              :'test of the title',
   title_tag          :'this should appear in the title tag',
+  /*
   canonical          :'https://home.com/description',
   meta_description   :'This is the meta description. 170 chars.',
   twitter_title      :'For twitter, a title',
@@ -31,6 +32,7 @@ const helmet = {
   og_image           :'',
   og_type            :'',
   og_url             :'',
+  */
 }
 
 const mainHeadingProps = {
@@ -59,7 +61,9 @@ const mainHeadingProps = {
  * Description : 
  */
 const <%= name %> = ({
-  //someprop
+  history,
+  location,
+  match
 }) => {
   <% if (withquery) { %>
   const {
