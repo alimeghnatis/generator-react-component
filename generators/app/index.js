@@ -20,12 +20,41 @@ module.exports = class extends Generator {
 
     // This makes `appname` a required argument.
     this.argument('name', { type: String, required: true })
-    this.option('common', { type: String, alias: 'c' })
-    this.option('simple', { type: Boolean, alias: 's' })
-    this.option('withcommon', { type: Boolean, alias: 'w' })
-    this.option('withquery', { type: String, alias: 'q' })
-    this.option('module', { type: Boolean, alias: 'm' })
-    this.option('page', { type: Boolean, alias: 'p' })
+    this.option('common', { 
+      type: String, 
+      alias: 'c',
+      desc:'whether this component is a "common" component, meaning a sub component of another component. It will be generated in the current folder'
+    })
+    this.option('simple', { 
+      type: Boolean, 
+      alias: 's',
+      desc:'Whether to use the simple template'
+    })
+    this.option('withcommon', { 
+      type: Boolean, 
+      alias: 'w',
+      desc:'Whether to create the common directory on execution (if this component will have subcomponents)'
+    })
+    this.option('withquery', { 
+      type: String, 
+      alias: 'q',
+      desc:'Whether this component should be generated with a graphql query'
+    })
+    this.option('module', { 
+      type: Boolean, 
+      alias: 'm',
+      desc:'Whether this is a site module (not a component)'
+    })
+    this.option('page', { 
+      type: Boolean, 
+      alias: 'p',
+      desc:'Whether this is a site page'
+    })
+    this.option('messages', { 
+      type: Boolean, 
+      alias: 'z',
+      desc:'Create component messages. THis does not create a component and should be executed separetely'
+    })
     
 
     // And you can then access it later; e.g.
@@ -327,6 +356,32 @@ module.exports = class extends Generator {
 
   }
 
+  _generateMessages() {
+
+    this.log('MODE : GENERATE MESSAGES')
+
+    const {
+      name,
+    } = this.options
+    
+    const targetFolder = './'
+
+    const templateDict = {
+        name,
+    } //Options to pass to the templates. pkg and version will be added automatically
+
+    this._create({
+      componentName:'messages',
+      targetFolder,
+      //createDir:false, //default
+      //createIndex:false, //default
+      //scssFilename, //No css here
+      syncComponent:'Messages.js', //Default
+      templateDict
+    })
+
+  }
+
   writing() {
     this.log('STARTING')
 
@@ -334,12 +389,14 @@ module.exports = class extends Generator {
       common,
       module,
       simple,
-      page
+      page,
+      messages
     } = this.options
 
 
     if(!module) {
-      if (page) this._generatePage()
+      if (messages) this._generateMessages()
+      else if (page) this._generatePage()
       else if (!common) {
         if(simple) this._generateSimpleComponent()
         else this._generateComponent()

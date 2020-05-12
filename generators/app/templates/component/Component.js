@@ -9,7 +9,15 @@ import { gql } from 'graphql-tag'
 import QUERY from './graphql/<%= withquery %>.gql'
 <% } %>
 
+
+//Intl
+
+//import { FormattedMessage} from "react-intl";
+//import messages from "./messages";
+// <FormattedMessage {...messages.title} />
+
 //Config
+
 //import C from 'ui/cssClasses'
 
 //Relative imports
