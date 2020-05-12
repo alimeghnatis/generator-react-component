@@ -368,8 +368,11 @@ module.exports = class extends Generator {
     
     const targetFolder = './'
 
+    const lower = pascalToSnake(name)
+
     const templateDict = {
-        name,
+      name,
+      lower
     } //Options to pass to the templates. pkg and version will be added automatically
 
     this._create({

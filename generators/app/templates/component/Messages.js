@@ -3,7 +3,7 @@ import { defineMessages } from "react-intl";
 
 const messages = {
   title: {
-    id: "<%= name %>.title",
+    id: "<%=lower %>.title",
     defaultMessage: "Title",
     description: "Section headline",
   },
