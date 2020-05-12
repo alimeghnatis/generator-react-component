@@ -172,6 +172,7 @@ module.exports = class extends Generator {
       targetFolder='./',
       createDir=false,
       createIndex=false,
+      appendToIndex=true,
       scssFilename,
       syncComponent='Component.js',
       withquery=false,
@@ -186,9 +187,10 @@ module.exports = class extends Generator {
     
     if(createDir) mkdirp.sync(componentName)
 
-    const stringToAppendToIndex = createDir ?
+    const stringToAppendToIndex = appendToIndex && (createDir ?
       `export { ${componentName} } from './${componentName}'\n` :
       `export { default as ${componentName} } from './${componentName}'\n`
+      )
 
     this._touchOrAppendToIndex(stringToAppendToIndex)
 
@@ -376,6 +378,7 @@ module.exports = class extends Generator {
       //createDir:false, //default
       //createIndex:false, //default
       //scssFilename, //No css here
+      appendToIndex:false,
       syncComponent:'Messages.js', //Default
       templateDict
     })
