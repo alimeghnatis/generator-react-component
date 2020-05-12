@@ -187,12 +187,11 @@ module.exports = class extends Generator {
     
     if(createDir) mkdirp.sync(componentName)
 
-    const stringToAppendToIndex = appendToIndex && (createDir ?
+    const stringToAppendToIndex = createDir ?
       `export { ${componentName} } from './${componentName}'\n` :
       `export { default as ${componentName} } from './${componentName}'\n`
-      )
 
-    this._touchOrAppendToIndex(stringToAppendToIndex)
+    appendToIndex && this._touchOrAppendToIndex(stringToAppendToIndex)
 
     this.destinationRoot(targetFolder)
 
