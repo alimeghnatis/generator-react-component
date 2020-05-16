@@ -14,6 +14,12 @@ import QUERY from './graphql/<%= withquery %>.gql'
 //Config
 //import C from 'ui/cssClasses'
 
+//Intl
+
+//import { FormattedMessage} from "react-intl";
+//import messages from "./messages";
+// <FormattedMessage {...messages.title} />
+
 //const baseClassName = 'page_<%= lower %>'
 const baseId = 'page_<%= lower %>'
 
