@@ -22,7 +22,11 @@ import QUERY from './graphql/<%= withquery %>.gql'
 
 //Relative imports
 //import styles from './<%= scss %>'
-import('./<%= scss %>')
+import { isBackend } from 'ui/isBackend'
+
+if(!isBackend) {
+  import('./<%= scss %>')
+}
 
 const baseClassName = '<%= lower %>'
 
