@@ -44,7 +44,7 @@ const <%= name %> = ({
   const {
     loading,
     error,
-    data=
+    data={}
   } = useQuery(gql(QUERY))
   <% } %>
   

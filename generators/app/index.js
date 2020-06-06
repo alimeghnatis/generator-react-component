@@ -209,7 +209,7 @@ module.exports = class extends Generator {
 
     if (withquery){
       mkdirp.sync('graphql')
-      this._touchFile(`graphql/${withhauery}.gql`)
+      this._touchFile(`graphql/${withquery}.gql`)
     }
 
     this.fs.copyTpl(
