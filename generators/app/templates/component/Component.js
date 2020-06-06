@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 <% if (withquery) { %>
 import { useQuery } from '@apollo/client'
-import { gql } from 'graphql-tag'
+import gql from 'graphql-tag'
 import QUERY from './graphql/<%= withquery %>.gql'
 <% } %>
 
