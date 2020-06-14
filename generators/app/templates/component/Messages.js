@@ -1,7 +1,7 @@
 /* <%= pkg %> <%= version %> */
 import { defineMessages } from "react-intl"
 
-const messages = {
+export default defineMessages({
   title: {
     id: "ds.<%=lower %>.title",
     defaultMessage: "",
@@ -19,6 +19,5 @@ const messages = {
     description   :'Page Subtitle'
   },
   */
-}
+})
 
-export default defineMessages(messages)

@@ -17,8 +17,10 @@ import QUERY from './graphql/<%= withquery %>.gql'
 //Intl
 
 //import { FormattedMessage} from "react-intl";
+//import { FormattedMessage, FormattedHTMLMessage } from "react-intl";
 //import messages from "./messages";
 // <FormattedMessage {...messages.title} />
+// <FormattedHTMLMessage {...messages.title} tagName='p'/>
 
 //const baseClassName = 'page_<%= lower %>'
 const baseId = 'page_<%= lower %>'
@@ -47,19 +49,20 @@ const mainHeadingProps = {
   //style,
   //children, //appended at bottom
 
-  subtitle        :'Stanley Kubrick, 1960',
-  //subtitleClassName,
-  //subtitleProps:{},
-
   heading         :'Spartacus',
-  headingClassName:'ts-green',
+  //headingClassName:'ts-green',
   headingAs       :'h1',
   //headingProps :{}
 
   label           :'Film',
   labelClassName  :'x-red basic',
   //labelAs:'p',
-  //labelProps :{}
+  //labelProps :{},
+  //
+  subtitle        :'Stanley Kubrick, 1960',
+  //subtitleClassName,
+  //subtitleProps:{},
+
 }
 
 /**
