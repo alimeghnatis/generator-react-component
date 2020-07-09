@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 
 import { Page, Heading } from '@fwrlines/ds'
 
+import { LocalNavBar, LocalFooter } from 'app/common/components'
+
 <% if (withquery) { %>
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'graphql-tag'
@@ -28,7 +30,8 @@ const baseId = 'page_<%= lower %>'
 const helmet = {
   robots             :'noindex, nofollow',
   title              :'test of the title',
-  title_tag          :'this should appear in the title tag',
+  title_tag           :'hello',
+  //title_tag          :<FormattedMessage {...messages.title} />,
   /*
   canonical          :'https://home.com/description',
   meta_description   :'This is the meta description. 170 chars.',
@@ -43,27 +46,40 @@ const helmet = {
   */
 }
 
-const mainHeadingProps = {
-  //id,
-  className:'uc',
-  //style,
-  //children, //appended at bottom
+const content = {
+  sectionTitle:{
+    sectionProps:{
+      id:'title',
+      head:true,
+      className:''
+    },
+    headingProps:{
+      //id,
+      className:'uc',
+      //style,
+      //children, //appended at bottom
 
-  heading         :'Spartacus',
-  //headingClassName:'ts-green',
-  headingAs       :'h1',
-  //headingProps :{}
+      //heading         :'hello',
+      heading         :<FormattedMessage {...messages.title} />,
+      //headingClassName:'ts-green',
+      headingAs       :'h1',
+      //headingProps :{}
 
-  label           :'Film',
-  labelClassName  :'x-red basic',
-  //labelAs:'p',
-  //labelProps :{},
-  //
-  subtitle        :'Stanley Kubrick, 1960',
-  //subtitleClassName,
-  //subtitleProps:{},
+      label:'film',
+      //label         :<FormattedMessage {...messages.label} />,
+      labelClassName  :'x-red basic',
+      //labelAs:'p',
+      //labelProps :{},
+      //
+      //subtitle        :'Stanley Kubrick, 1960',
+      subtitle         :<FormattedMessage {...messages.subtitle} />,
+      //subtitleClassName,
+      //subtitleProps:{},
 
+    }
+  }
 }
+
 
 /**
  * Page `<%= name %>`
@@ -84,33 +100,30 @@ const <%= name %> = ({
   
   return (
     <Page id={ baseId }
-      itemType='https://schema.org/FAQPage'
+      //itemType='https://schema.org/FAQPage'
+      className='u2'
       HELMET={ helmet }
     >
+      <LocalNavBar/>
       <Page.Section
-        head
-        className='p-u u2'
-        id='head'
+        { ...content.sectionTitle.sectionProps }
       >
     
-        <Heading { ...mainHeadingProps} />
+        <Heading { ...content.sectionTitle.headingProps } />
       </Page.Section>
       <Page.Section
-        id='a1'
-        className='p-u u2'
+        { ...content.sectionTitle.sectionProps }
       >
-        <h2>Section A2</h2>
-        <p>Some content here. Blah blah</p>
     
+        <Heading { ...content.sectionTitle.headingProps } />
       </Page.Section>
       <Page.Section
-        id='a2'
-        className='p-u u2'
+        { ...content.sectionTitle.sectionProps }
       >
-        <h2>Section A2</h2>
-        <p>Some content here. Blah blah</p>
     
+        <Heading { ...content.sectionTitle.headingProps } />
       </Page.Section>
+
     </Page>
 )}
 

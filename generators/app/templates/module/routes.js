@@ -5,7 +5,6 @@ import MODULE_URLS from './urls'
 
 const moduleName = 'app.<%= lower %>'
 
-//const redeemParam = ':slug([0-9a-f]{24})'
 
 export default [
   {
