@@ -94,11 +94,6 @@ const <%= name %> = ({
   ]), 
   //as: PropTypes.string,
 
-  /**
-   * The height of the element
-   */
-  height:PropTypes.string,
-
   /*
   : PropTypes.shape({
     id: PropTypes.string.isRequired,
