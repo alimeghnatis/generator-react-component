@@ -355,6 +355,17 @@ module.exports = class extends Generator {
       templateDict
     })
 
+    this._create({
+      componentName:`${name}.messages`,
+      targetFolder,
+      //createDir:false, //default
+      //createIndex:false, //default
+      //scssFilename, //No css here
+      appendToIndex:false,
+      syncComponent:'Messages.js', //Default
+      templateDict
+    })
+
   }
 
   _generateMessages() {

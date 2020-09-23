@@ -4,20 +4,15 @@ import { defineMessages } from "react-intl"
 export default defineMessages({
   title: {
     id: "ds.<%=lower %>.title",
+    //id: "app.common.pages.<%=lower %>.title",
     defaultMessage: "",
     description: "",
   },
-  /*
-  pppTitle:{
-    id            :'app.<%= lower %>.pages.ppp.title',
-    defaultMessage:'',
-    description   :'Page Title'
+  subtitle: {
+    id: "ds.<%=lower %>.subtitle",
+    //id: "app.common.pages.<%=lower %>.subtitle",
+    defaultMessage: "",
+    description: "",
   },
-  pppSubtitle:{
-    id            :'app.<%= lower %>.pages.ppp.subtitle',
-    defaultMessage:'',
-    description   :'Page Subtitle'
-  },
-  */
 })
 
