@@ -18,11 +18,10 @@ import QUERY from './graphql/<%= withquery %>.gql'
 
 //Intl
 
-//import { FormattedMessage} from "react-intl";
-//import { FormattedMessage, FormattedHTMLMessage } from "react-intl";
-//import messages from "./messages";
+import { FormattedMessage} from "react-intl";
+import messages from "./<% name%>.messages";
+
 // <FormattedMessage {...messages.title} />
-// <FormattedHTMLMessage {...messages.title} tagName='p'/>
 
 //const baseClassName = 'page_<%= lower %>'
 const baseId = 'page_<%= lower %>'
@@ -101,7 +100,7 @@ const <%= name %> = ({
   return (
     <Page id={ baseId }
       //itemType='https://schema.org/FAQPage'
-      className='u2'
+      className='u1 md-u2'
       HELMET={ helmet }
     >
       <LocalNavBar/>
