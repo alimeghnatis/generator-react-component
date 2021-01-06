@@ -200,51 +200,13 @@ const <%= name %> = ({
       //itemType="https://schema.org/FAQPage"
       HELMET={helmet}
       footer={
-        <>
-          {!diffCount &&<>
-            <Button
-              //disabled={!diffCount}
-              loading={loading}
-              className="xs-h sm-h"
-              simple
-            >
-              &nbsp;
-            </Button>
-            <Button
-              //disabled={!diffCount}
-              loading={loading}
-              className="lg-h md-h"
-              simple
-              compact
-            >
-              &nbsp;
-            </Button>
-          </>
-          }
-          <ModificationCounter count={diffCount} />
-          { diffCount ?
-            <>
-              <Button
-              //disabled={!diffCount}
-                loading={loading}
-                onClick={diffCount ? mutate : undefined}
-                className="x-success xs-h sm-h"
-                icon="l"
-                iconSide="r"
-              >
-            Save
-              </Button>
-              <Button
-              //disabled={!diffCount}
-                loading={loading}
-                onClick={diffCount ? mutate : undefined}
-                className="x-success lg-h md-h"
-                compact
-              >
-            Save
-              </Button>
-            </> : undefined}
-        </>
+          <Page.Footer
+  {...{
+    mutate,
+    loading,
+    diffCount
+  }}
+          />
 
       }
     >
@@ -255,7 +217,7 @@ const <%= name %> = ({
       />
       <Page.Section
         form
-        heading={<FormattedMessage {...messages.sectionWhatsappTitle} />}
+        //heading={<FormattedMessage {...messages.sectionWhatsappTitle} />}
       >
         {inputs
           .slice(0,2)
@@ -271,7 +233,7 @@ const <%= name %> = ({
       </Page.Section>
       <Page.Section
         form
-        heading={<FormattedMessage {...messages.sectionContactFormTitle} />}
+        //heading={<FormattedMessage {...messages.sectionContactFormTitle} />}
       >
         {inputs
           .slice(2,4)
