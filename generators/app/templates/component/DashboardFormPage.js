@@ -31,7 +31,7 @@ import MUTATION_UPDATE_MY_LOCATION from './graphql/updateMyLocation.gql'
 //Intl
 
 import { FormattedMessage, useIntl } from 'react-intl'
-import messages from './WebsiteContactInfo.messages'
+import messages from './<%= name %>.messages'
 // <FormattedMessage {...messages.title} />
 
 //const baseClassName = 'page_shop_details'
@@ -330,8 +330,8 @@ export default (props) => {
   const validationMap = useMemo(() => ({
     //   :(v) => v && ((v.length < 4) || (v.length > 20)) && intl.formatMessage(messages.validationFirstNameGeneric),
     //lastName    :(v) => v && ((v.length < 4) || (v.length > 20)) && intl.formatMessage(messages.validationLastNameGeneric),
-    whatsappNumber           :(v) => v && ((String(v).length != 10) || !/^\d+$/.test(v)) && intl.formatMessage(messages.validationWhatsappNumberGeneric),
-    whatsappNumberDescription:(v) => v && (v.length > 65) && intl.formatMessage(messages.validationWhatsappNumberDescriptionGeneric)
+    //whatsappNumber           :(v) => v && ((String(v).length != 10) || !/^\d+$/.test(v)) && intl.formatMessage(messages.validationWhatsappNumberGeneric),
+    //whatsappNumberDescription:(v) => v && (v.length > 65) && intl.formatMessage(messages.validationWhatsappNumberDescriptionGeneric)
     //address     :(v) => v && ((v.length < 4) || (v.length > 35)) && intl.formatMessage(messages.validationAddressGeneric),
     //address2    :(v) => v?.length && ((v.length < 4) || (v.length > 35)) && intl.formatMessage(messages.validationAddressGeneric),
     //colony      :(v) => v?.length && ((v.length < 4) || (v.length > 30)) && intl.formatMessage(messages.validationColonyGeneric),
