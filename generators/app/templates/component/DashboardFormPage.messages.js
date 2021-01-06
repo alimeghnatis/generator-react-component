@@ -17,8 +17,8 @@ const messages = defineMessages({
     defaultMessage:'Contact form',
     description   :''
   },
-  sectionXSubitle:{
-    id            :'app.dashboard.pages.<%=lower %>.section.X.subitle',
+  sectionXSubtitle:{
+    id            :'app.dashboard.pages.<%=lower %>.section.X.subtitle',
     defaultMessage:'Contact form',
     description   :''
   },
@@ -32,11 +32,17 @@ const messages = defineMessages({
     defaultMessage:'User: ',
     description   :''
   },
+  fieldXOY:{
+    id            :'app.dashboard.pages.<%=lower %>.field.X.option.Y',
+    defaultMessage:'Location name: ',
+    description   :''
+  },
   valXGeneric:{
     id            :'app.dashboard.pages.<%=lower %>.val.X.generic',
     defaultMessage:'Please check the phone number you entered is correct.',
     description   :''
-  },*/
+  },
+  */
   
 })
 

@@ -190,8 +190,21 @@ const <%= name %> = ({
       description:<FormattedMessage {...messages.fieldXDescription} />,
       cleanup    :false,
       condition  :values => values.isContactFormEnabled
+    options       :[
+  {
+    value:'phone',
+    label:intl.formatMessage(messages.fieldXOY),
+    id   :'phone'
+  },
+  {
+    value:'email',
+    label:intl.formatMessage(messages.fieldXOY),
+    id   :'email'
+  }
     }*/}
-  ], [])
+
+]
+  , [])
 
   return (
     <Page
@@ -217,13 +230,15 @@ const <%= name %> = ({
       />
       <Page.Section
         form
-        //heading={<FormattedMessage {...messages.sectionWhatsappTitle} />}
+        //heading={<FormattedMessage {...messages.sectionXTitle} />}
+        //subtitle={<FormattedMessage {...messages.sectionXSubtitle} />}
       >
         {inputs
           .slice(0,2)
           .filter(input => testCondition(input.condition))
           .map(input => (
             <FormInput
+              compact
               key={input.name}
               {...input}
             />
@@ -233,13 +248,15 @@ const <%= name %> = ({
       </Page.Section>
       <Page.Section
         form
-        //heading={<FormattedMessage {...messages.sectionContactFormTitle} />}
+        //heading={<FormattedMessage {...messages.sectionXTitle} />}
+        //subtitle={<FormattedMessage {...messages.sectionXSubtitle} />}
       >
         {inputs
           .slice(2,4)
           .filter(input => testCondition(input.condition))
           .map(input => (
             <FormInput
+              compact
               key={input.name}
               {...input}
             />
@@ -290,22 +307,22 @@ export default (props) => {
   const intl = useIntl()
 
   const validationMap = useMemo(() => ({
-    //   :(v) => v && ((v.length < 4) || (v.length > 20)) && intl.formatMessage(messages.validationFirstNameGeneric),
-    //lastName    :(v) => v && ((v.length < 4) || (v.length > 20)) && intl.formatMessage(messages.validationLastNameGeneric),
-    //whatsappNumber           :(v) => v && ((String(v).length != 10) || !/^\d+$/.test(v)) && intl.formatMessage(messages.validationWhatsappNumberGeneric),
-    //whatsappNumberDescription:(v) => v && (v.length > 65) && intl.formatMessage(messages.validationWhatsappNumberDescriptionGeneric)
-    //address     :(v) => v && ((v.length < 4) || (v.length > 35)) && intl.formatMessage(messages.validationAddressGeneric),
-    //address2    :(v) => v?.length && ((v.length < 4) || (v.length > 35)) && intl.formatMessage(messages.validationAddressGeneric),
-    //colony      :(v) => v?.length && ((v.length < 4) || (v.length > 30)) && intl.formatMessage(messages.validationColonyGeneric),
-    //city        :(v) => v && ((v.length < 4) || (v.length > 35)) && intl.formatMessage(messages.validationCityGeneric),
-    //postcode    :(v) => v && ((v.length != 5) || !/^\d+$/.test(v)) && intl.formatMessage(messages.validationPostcodeGeneric),
-    //siteSubtitle:(v) => v && ((v.length < 10) || (v.length > 45)) && intl.formatMessage(messages.validationSubtitleGeneric),
+    //   :(v) => v && ((v.length < 4) || (v.length > 20)) && intl.formatMessage(messages.valFirstNameGeneric),
+    //lastName    :(v) => v && ((v.length < 4) || (v.length > 20)) && intl.formatMessage(messages.valLastNameGeneric),
+    //whatsappNumber           :(v) => v && ((String(v).length != 10) || !/^\d+$/.test(v)) && intl.formatMessage(messages.valWhatsappNumberGeneric),
+    //whatsappNumberDescription:(v) => v && (v.length > 65) && intl.formatMessage(messages.valWhatsappNumberDescriptionGeneric)
+    address     :(v) => v && ((v.length < 4) || (v.length > 35)) && intl.formatMessage(messages.valAddressGeneric),
+    address2    :(v) => v?.length && ((v.length < 4) || (v.length > 35)) && intl.formatMessage(messages.valAddressGeneric),
+    //colony      :(v) => v?.length && ((v.length < 4) || (v.length > 30)) && intl.formatMessage(messages.valColonyGeneric),
+    city        :(v) => v && ((v.length < 4) || (v.length > 35)) && intl.formatMessage(messages.valCityGeneric),
+    postcode    :(v) => v && ((v.length != 5) || !/^\d+$/.test(v)) && intl.formatMessage(messages.valPostcodeGeneric),
+    //siteSubtitle:(v) => v && ((v.length < 10) || (v.length > 45)) && intl.formatMessage(messages.valSubtitleGeneric),
     //subdomain   :(v) => {
     //  if (!v) return false
-    //  if (v.length < 4) return intl.formatMessage(messages.validationSubdomainGeneric)
+    //  if (v.length < 4) return intl.formatMessage(messages.valSubdomainGeneric)
     //  let errors = []
-    //  if (v.length > 25) errors.push(intl.formatMessage(messages.validationSubdomainGeneric))
-    //  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(v)) errors.push(intl.formatMessage(messages.validationSubdomainCharacters))
+    //  if (v.length > 25) errors.push(intl.formatMessage(messages.valSubdomainGeneric))
+    //  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(v)) errors.push(intl.formatMessage(messages.valSubdomainCharacters))
     //  return errors.length ? errors : false
 
   }), [])
