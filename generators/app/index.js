@@ -50,6 +50,11 @@ module.exports = class extends Generator {
       alias: 'p',
       desc:'Whether this is a site page'
     })
+    this.option('dashboardpage', { 
+      type: Boolean, 
+      alias: 'd',
+      desc:'Whether this is a dashboard page'
+    })
     this.option('messages', { 
       type: Boolean, 
       alias: 'z',
@@ -368,6 +373,52 @@ module.exports = class extends Generator {
 
   }
 
+  _generateDashboardPage() {
+
+    this.log('MODE : GENERATE DASHBOARD PAGE')
+
+    const {
+      name,
+      common,
+      withquery,
+    } = this.options
+    
+    const targetFolder = './'
+    const lower = pascalToSnake(name)
+    //const scssFilename = lower + '.scss' //No css here
+    const chunk_name = common ? pascalToSnake(common) : pascalToSnake(name)
+
+    const templateDict = {
+        name,
+        lower,
+        chunk_name,
+        withquery
+    } //Options to pass to the templates. pkg and version will be added automatically
+
+    this._create({
+      componentName:name,
+      targetFolder,
+      //createDir:false, //default
+      //createIndex:false, //default
+      //scssFilename, //No css here
+      syncComponent:'DashboardFormPage.js', //Default
+      withquery,
+      templateDict
+    })
+
+    this._create({
+      componentName:`${name}.messages`,
+      targetFolder,
+      //createDir:false, //default
+      //createIndex:false, //default
+      //scssFilename, //No css here
+      appendToIndex:false,
+      syncComponent:'DashboardFormPage.messages.js', //Default
+      templateDict
+    })
+
+  }
+
   _generateMessages() {
 
     this.log('MODE : GENERATE MESSAGES')
@@ -406,6 +457,7 @@ module.exports = class extends Generator {
       module,
       simple,
       page,
+      dashboardpage,
       messages
     } = this.options
 
@@ -413,6 +465,7 @@ module.exports = class extends Generator {
     if(!module) {
       if (messages) this._generateMessages()
       else if (page) this._generatePage()
+      else if (dashboardpage) this._generateDashboardPage()
       else if (!common) {
         if(simple) this._generateSimpleComponent()
         else this._generateComponent()
